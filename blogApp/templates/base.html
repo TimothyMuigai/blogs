@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Document
+        {% endblock %}
+    </title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+        <!-- component -->
+    <div class="w-full shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px]">
+      <div class="ml-4 h-14 max-w-6xl">
+        <ul class="relative mx-12 flex h-full flex-row items-center justify-between text-[16px] font-medium sm:text-[18px]">
+          <li class="hover:cursor-pointer"><a href="/">Home</a></li>
+          <li class="hover:cursor-pointer"><a href="/blogs">View Blogs</a></li>
+          <li class="hover:cursor-pointer"><a href="/about">About</a></li>
+          <li class="hover:cursor-pointer"><a href="/contact">Contact</a></li>
+          <li class="hover:cursor-pointer"><a href="/subscribe">Subscribe</a></li>
+          <li class="hover:cursor-pointer"><a href="/create_blog">Create blog</a></li>
+          {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+          </li>
+          <li>Hi🙋‍♂️ {{ user.username }}</li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+      
+    {% block content %}
+    
+    {% endblock %}
+</body>
+</html>
