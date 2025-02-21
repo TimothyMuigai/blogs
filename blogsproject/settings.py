@@ -87,22 +87,28 @@ WSGI_APPLICATION = 'blogsproject.wsgi.application'
 #     }
 # }
 
+DATABASES = { 
+   # the link here is the external link provided on postgresql web service db 
+   "default": dj_database_url.parse('postgresql://blog_postgres_3bhy_user:iiKwd8aTA6nxemMJBQvwVElL1Tj0Bdwo@dpg-cus4l5a3esus73fj176g-a.oregon-postgres.render.com/blog_postgres_3bhy') 
+} 
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DATABASE_ENGINE'),
-        'NAME':  config('DATABASE_NAME'),
-        'USER':  config('DATABASE_USER'),
-        'PASSWORD':  config('DATABASE_PASSWORD'),
-        'HOST':  config('DATABASE_HOST'),
-        'PORT':  config('DATABASE_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DATABASE_ENGINE'),
+#         'NAME':  config('DATABASE_NAME'),
+#         'USER':  config('DATABASE_USER'),
+#         'PASSWORD':  config('DATABASE_PASSWORD'),
+#         'HOST':  config('DATABASE_HOST'),
+#         'PORT':  config('DATABASE_PORT'),
+#     }
+# }
 cloudinary.config(
     cloud_name = config('CLOUDINARY_CLOUD_NAME'),
     api_key = config('CLOUDINARY_API_KEY'),
     api_secret = config('CLOUDINARY_API_SECRET')
 )
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
